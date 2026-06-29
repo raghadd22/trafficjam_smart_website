@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrafficJam | Smart City Traffic Intelligence</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="index.html" aria-label="TrafficJam home">
+        <img src="logo.png" alt="TrafficJam Logo" />
+        <span>TrafficJam</span>
+      </a>
+
+      <ul class="menu">
+        <li><a href="#city">City</a></li>
+        <li><a href="data.html">Traffic Data</a></li>
+        <li><a href="#patterns">Most Traffic</a></li>
+        <li><a href="ai.html">AI Organizer</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">AI-Powered Traffic Intelligence</p>
+        <h1>Smarter traffic decisions for a faster city.</h1>
+        <p class="hero-text">
+          Monitor congestion, explore real traffic records, detect peak hours, and generate
+          smart route-organizing recommendations using data-driven insights.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="data.html">Explore Dataset</a>
+          <a class="btn secondary" href="ai.html">Use AI Organizer</a>
+        </div>
+
+        <div class="hero-status" id="homeDataStatus">Loading traffic intelligence...</div>
+      </div>
+
+      <div class="traffic-visual" aria-label="Smart traffic light visual">
+        <div class="traffic-card">
+          <div class="signal-halo red"></div>
+          <div class="signal-halo yellow"></div>
+          <div class="signal-halo green"></div>
+
+          <div class="smart-light">
+            <span class="light red"></span>
+            <span class="light yellow"></span>
+            <span class="light green active"></span>
+          </div>
+
+          <div class="ai-chip">
+            <span class="pulse"></span>
+            Live Pattern Scan
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-stats" aria-label="Traffic data overview">
+      <article class="stat-card">
+        <p>Total Records</p>
+        <h2 id="homeRows">—</h2>
+      </article>
+      <article class="stat-card">
+        <p>Busiest Junction</p>
+        <h2 id="homeJunction">—</h2>
+      </article>
+      <article class="stat-card">
+        <p>Peak Vehicles</p>
+        <h2 id="homePeak">—</h2>
+      </article>
+      <article class="stat-card">
+        <p>Best Travel Hour</p>
+        <h2 id="homeBestHour">—</h2>
+      </article>
+    </section>
+
+    <section id="city" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">City Control Center</p>
+        <h2>Everything your traffic dashboard needs.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Real Dataset Analytics</h3>
+          <p>Reads the traffic CSV, calculates totals, peak records, busiest junctions, and date ranges automatically.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon">🧠</span>
+          <h3>Smart Organizer</h3>
+          <p>Uses traffic patterns, time of day, demand level, weather, and incidents to estimate congestion risk.</p>
+        </article>
+
+        <article class="feature-card">
+          <span class="feature-icon">🚦</span>
+          <h3>Peak-Hour Detection</h3>
+          <p>Finds which hours and junctions carry the highest vehicle flow so planners can act faster.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="patterns" class="section dashboard-preview">
+      <div class="section-heading">
+        <p class="eyebrow">Most Traffic</p>
+        <h2>Congestion pattern preview.</h2>
+      </div>
+
+      <div class="preview-panel">
+        <div>
+          <h3>Busiest Junctions</h3>
+          <p>The chart updates from the uploaded traffic dataset and summarizes average vehicle volume by junction.</p>
+        </div>
+        <canvas id="homeJunctionChart" width="720" height="320" aria-label="Busiest junction chart"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>TrafficJam • Smart traffic monitoring and AI organization prototype</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

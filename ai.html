@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrafficJam | AI Organizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="ai-body">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="TrafficJam Logo" />
+        <span>TrafficJam</span>
+      </a>
+
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="data.html">Traffic Data</a></li>
+        <li><a class="active" href="ai.html">AI Organizer</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="ai-page">
+    <section class="section-heading ai-heading">
+      <p class="eyebrow">AI Organizer</p>
+      <h1>Plan smarter traffic flow.</h1>
+      <p>
+        Select a junction and conditions. The organizer estimates congestion risk using dataset averages
+        plus rule-based AI scoring.
+      </p>
+      <div id="aiDataStatus" class="hero-status">Loading traffic patterns...</div>
+    </section>
+
+    <section class="ai-grid">
+      <form class="planner-card" id="aiForm">
+        <label class="control">
+          <span>Junction</span>
+          <select id="aiJunction">
+            <option value="all">All Junctions</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span>Hour</span>
+          <select id="aiHour"></select>
+        </label>
+
+        <label class="control">
+          <span>Demand Level</span>
+          <select id="aiDemand">
+            <option value="normal">Normal</option>
+            <option value="school">School / Work Rush</option>
+            <option value="event">Large Event</option>
+            <option value="emergency">Emergency Priority</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span>Weather</span>
+          <select id="aiWeather">
+            <option value="clear">Clear</option>
+            <option value="rain">Rain</option>
+            <option value="fog">Fog / Low Visibility</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span>Road Status</span>
+          <select id="aiIncident">
+            <option value="none">No Incident</option>
+            <option value="minor">Minor Incident</option>
+            <option value="major">Major Incident</option>
+          </select>
+        </label>
+
+        <button class="btn primary" type="submit">Generate Plan</button>
+      </form>
+
+      <section class="result-card">
+        <div class="risk-ring" id="riskRing">
+          <span id="riskScore">—</span>
+          <small>Risk</small>
+        </div>
+
+        <div class="result-copy">
+          <p class="eyebrow">AI Decision</p>
+          <h2 id="riskTitle">Waiting for input</h2>
+          <p id="riskSummary">Choose your conditions and generate a smart traffic plan.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="recommendation-panel">
+      <article class="chart-card">
+        <h3>Recommended Actions</h3>
+        <ul id="recommendations" class="recommendations">
+          <li>Load the dataset and generate a plan to see smart actions.</li>
+        </ul>
+      </article>
+
+      <article class="chart-card">
+        <h3>Dataset-Based Best Hours</h3>
+        <p id="bestHoursText">Loading...</p>
+        <canvas id="aiHourChart" width="620" height="320"></canvas>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>TrafficJam • AI Organizer</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

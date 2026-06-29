@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrafficJam | Traffic Data Explorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="data-body">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="TrafficJam Logo" />
+        <span>TrafficJam</span>
+      </a>
+
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="data.html">Traffic Data</a></li>
+        <li><a href="ai.html">AI Organizer</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="data-page">
+    <section class="data-hero">
+      <p class="eyebrow">Dataset Intelligence</p>
+      <h1>Traffic Data Explorer</h1>
+      <p class="subtitle">Search, filter, and analyze real congestion records with smart summaries.</p>
+
+      <div class="control-panel">
+        <label class="control wide">
+          <span>Search</span>
+          <input id="search" placeholder="Search by date, junction, vehicles, or ID..." />
+        </label>
+
+        <label class="control">
+          <span>Junction</span>
+          <select id="junctionFilter">
+            <option value="all">All Junctions</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span>Time Window</span>
+          <select id="timeFilter">
+            <option value="all">All Day</option>
+            <option value="morning">Morning 6–11</option>
+            <option value="afternoon">Afternoon 12–16</option>
+            <option value="evening">Evening 17–21</option>
+            <option value="night">Night 22–5</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span>Sort</span>
+          <select id="sortBy">
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="vehicles-desc">Highest Vehicles</option>
+            <option value="vehicles-asc">Lowest Vehicles</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span>Show</span>
+          <select id="limitRows">
+            <option value="50">50 rows</option>
+            <option value="100">100 rows</option>
+            <option value="250">250 rows</option>
+          </select>
+        </label>
+
+        <button id="resetBtn" class="btn small secondary" type="button">Reset</button>
+      </div>
+
+      <div class="upload-card">
+        <div>
+          <strong>Dataset status:</strong>
+          <span id="info">Loading traffic.csv...</span>
+        </div>
+        <label class="file-picker">
+          Upload CSV
+          <input id="csvFile" type="file" accept=".csv" />
+        </label>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <p>Total Records</p>
+        <h2 id="statRows">—</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Junctions</p>
+        <h2 id="statJunctions">—</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Peak Vehicles</p>
+        <h2 id="statPeak">—</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Average Vehicles</p>
+        <h2 id="statAverage">—</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Date Range</p>
+        <h2 id="statRange">—</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Busiest Junction</p>
+        <h2 id="statBusiest">—</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Busiest Hour</p>
+        <h2 id="statBusiestHour">—</h2>
+      </div>
+
+      <div class="stat-card">
+        <p>Filtered Results</p>
+        <h2 id="statFiltered">—</h2>
+      </div>
+    </section>
+
+    <section class="smart-insights">
+      <article class="insight-card danger">
+        <span>🚨</span>
+        <div>
+          <p>Highest Risk Period</p>
+          <h3 id="highestRisk">—</h3>
+        </div>
+      </article>
+
+      <article class="insight-card success">
+        <span>✅</span>
+        <div>
+          <p>Best Low-Traffic Window</p>
+          <h3 id="bestWindow">—</h3>
+        </div>
+      </article>
+
+      <article class="insight-card warning">
+        <span>🧠</span>
+        <div>
+          <p>Smart Recommendation</p>
+          <h3 id="smartTip">Loading...</h3>
+        </div>
+      </article>
+    </section>
+
+    <section class="charts-grid">
+      <article class="chart-card">
+        <div class="chart-title">
+          <h3>Average Vehicles by Junction</h3>
+          <p>Compare congestion intensity across junctions.</p>
+        </div>
+        <canvas id="junctionChart" width="620" height="320"></canvas>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-title">
+          <h3>Hourly Traffic Pattern</h3>
+          <p>Find the best and worst hours to move.</p>
+        </div>
+        <canvas id="hourChart" width="620" height="320"></canvas>
+      </article>
+    </section>
+
+    <section class="table-wrap">
+      <div class="table-head">
+        <div>
+          <h2>Traffic Records</h2>
+          <p>Showing the first matching rows for performance.</p>
+        </div>
+        <button id="downloadFiltered" class="btn small primary" type="button">Download Filtered CSV</button>
+      </div>
+
+      <div class="table-container">
+        <table id="table"></table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>TrafficJam • Data Explorer</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
