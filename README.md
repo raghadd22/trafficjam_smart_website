@@ -130,19 +130,6 @@ The AI Organizer page allows users to simulate traffic conditions and receive sm
 
 ---
 
-## How to Run
-
-Because the project loads a CSV file, it should be opened using a local server.
-
-### Recommended Method: VS Code Live Server
-
-1. Open the project folder in VS Code.
-2. Install the **Live Server** extension.
-3. Right-click `index.html`.
-4. Click **Open with Live Server**.
-5. Use the navigation menu to open the Data page and AI Organizer.
-
----
 
 ## Dataset
 
